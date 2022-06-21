@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <menu id="application-cubalittlecrm" insertBefore="administration" caption="mainMsg://menu_config.application-cubalittlecrm">
+        <item screen="cubalittlecrm_Message.browse" caption="mainMsg://menu_config.cubalittlecrm_Message.browse"/>
+        <item screen="cubalittlecrm_Person.browse" caption="mainMsg://menu_config.cubalittlecrm_Person.browse"/>
     </menu>
 </menu-config>

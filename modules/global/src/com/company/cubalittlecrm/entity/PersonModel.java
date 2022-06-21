@@ -10,8 +10,8 @@ import javax.validation.constraints.NotNull;
 
 @Table(name = "CUBALITTLECRM_PERSON")
 @Entity(name = "cubalittlecrm_Person")
-@NamePattern("%s|firstName")
-public class Person extends StandardEntity {
+@NamePattern("%s %s|firstName,lastName")
+public class PersonModel extends StandardEntity {
     private static final long serialVersionUID = -364835204097621479L;
 
     @NotNull
