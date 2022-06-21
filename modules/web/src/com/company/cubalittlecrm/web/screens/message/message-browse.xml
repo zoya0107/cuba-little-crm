@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://messageBrowse.caption"
+        focusComponent="messagesTable"
+        messagesPack="com.company.cubalittlecrm.web.screens.message">
+    <data readOnly="true">
+        <collection id="messagesDc"
+                    class="com.company.cubalittlecrm.entity.MessageModel">
+            <view extends="_local">
+                <property name="author" view="_minimal"/>
+                <property name="receiver" view="_minimal"/>
+            </view>
+            <loader id="messagesDl">
+                <query>
+                    <![CDATA[select e from cubalittlecrm_Message e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="messagesTabSheet"
+            spacing="true">
+        <filter id="filter"
+                applyTo="messagesTable"
+                dataLoader="messagesDl">
+            <properties include=".*"/>
+        </filter>
+        <tabSheet id="messagesTabSheet">
+            <tab id="receivedMessages" caption="Received Messages">
+                <groupTable id="messagesTable"
+                                    width="100%"
+                                    dataContainer="messagesDc">
+                    <actions>
+                        <action id="create" type="create"/>
+                    </actions>
+                    <columns>
+                        <column id="topic"/>
+                        <column id="content"/>
+                        <column id="author"/>
+                        <column id="receiver"/>
+                        <column id="date"/>
+                    </columns>
+                    <rowsCount/>
+                </groupTable>
+            </tab>
+            <tab id="sentMessages" caption="Sent Messages" margin="true,false,false,false" spacing="true">
+                <groupTable id="sentMessagesTable"
+                            width="100%"
+                            dataContainer="messagesDc">
+                    <actions>
+                        <action id="create" type="create"/>
+                    </actions>
+                    <columns>
+                        <column id="topic"/>
+                        <column id="content"/>
+                        <column id="author"/>
+                        <column id="receiver"/>
+                        <column id="date"/>
+                    </columns>
+                    <rowsCount/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn" action="messagesTable.create"/>
+                    </buttonsPanel>
+                </groupTable>
+            </tab>
+        </tabSheet>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
